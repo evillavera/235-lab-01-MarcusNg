@@ -10,6 +10,12 @@ int main()
   l->insert("three");
   l->insert("four");
   std::cout << l->getDebugString();
+  std::cout << l->size();
+
+  std::cout << std::endl << "push_back" << std::endl;
+  l->insert("five");
+  l->push_back("six");
+  std::cout << l->getDebugString() << std::endl;
 
   delete l;
   List l2;
