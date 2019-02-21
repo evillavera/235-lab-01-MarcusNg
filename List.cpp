@@ -5,6 +5,7 @@
 
 List::List(){
   head = nullptr;
+  size = 0;
 }
 
 List::~List(){
@@ -18,6 +19,7 @@ List::~List(){
       t=t->getNext();
       delete t2;
     }
+    size = 0;
   }
 }
 
@@ -29,6 +31,7 @@ void List::insert(std::string data){
     t->setNext(head);
     head = t;
   }
+  size++;
 }
 
 std::string List::getDebugString(){
@@ -54,8 +57,14 @@ void List::push_back(std::string data) {
   } else {
     head = t;
   }
+  size++;
 }
 
+int List::getSize() {
+  return size;
+}
+
+/*
 int List::size() {
   int s = 0;
   Node *tmp;
@@ -66,6 +75,7 @@ int List::size() {
   }
   return s;
 }
+*/
 
 std::string & List::at(int i) {
   Node *tmp = head;
@@ -88,6 +98,7 @@ std::string List::insert(int i,std::string data) {
     ctr++;
   }
   t->setNext(new Node(data, tmp));
+  size++;
   return tmp->getData();
 }
 
@@ -102,6 +113,7 @@ void List::remove(int i) {
     ctr++;
   }
   t->setNext(tmp->getNext());
+  size--;
   delete tmp;
 }
 

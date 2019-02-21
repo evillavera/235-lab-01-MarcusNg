@@ -9,7 +9,7 @@ TEST_CASE("Testing Linked List"){
   l.insert("three");
   l.insert("four");
 
-  CHECK(l.size() == 4);
+  CHECK(l.getSize() == 4);
   CHECK(l[2] == "two");
   l.push_back("five");
   CHECK(l.at(4) == "five");

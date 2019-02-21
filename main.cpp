@@ -12,7 +12,7 @@ int main()
 
   std::cout << "\n\n-----------Testing-----------\n\n";
   std::cout << l.getDebugString();
-  std::cout << "size: " << l.size();
+  std::cout << "size: " << l.getSize();
 
   std::cout << "\n\npush_back(\"five\")"")\n";
   l.push_back("five");
