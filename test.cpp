@@ -10,12 +10,12 @@ TEST_CASE("Testing Linked List"){
   l.insert("four");
 
   CHECK(l.size() == 4);
-  CHECK(l[2] == "three");
+  CHECK(l[2] == "two");
   l.push_back("five");
   CHECK(l.at(4) == "five");
   l.insert(4, "awesome");
-  CHECK(l.at(4) == "five");
+  CHECK(l.at(4) == "awesome");
   l.remove(2);
-  CHECK(l[2] == "four");
+  CHECK(l[2] == "one");
   
 }
