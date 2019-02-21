@@ -43,17 +43,17 @@ std::string List::getDebugString(){
 }
 
 void List::push_back(std::string data) {
-   if (head != nullptr){
-     Node *tmp,*t;
-     tmp = head;
-     t = new Node(data);
-     
-     while (tmp->getNext() != nullptr) {
-       tmp = tmp->getNext();
-     }
-     
-     tmp->setNext(t);
-   }
+  Node *tmp,*t;
+  tmp = head;
+  t = new Node(data);
+  if (head != nullptr){
+    while (tmp->getNext() != nullptr) {
+      tmp = tmp->getNext();
+    }
+    tmp->setNext(t);
+  } else {
+    head = t;
+  }
 }
 
 int List::size() {
@@ -68,33 +68,43 @@ int List::size() {
 }
 
 std::string & List::at(int i) {
-  Node * tmp = head;
-
-  if (i < size()) {
-    for (int j = 0; j < i; j++) {
-      tmp = tmp->getNext();
-    }
+  Node *tmp = head;
+  int ctr = 0;
+  while (ctr < i) {
+    tmp = tmp->getNext();
+    ctr++;
   }
-    
-  //return tmp->getData();
+  return tmp->getRefData();
 }
 
-std::string List::insert(int index,std::string data) {
+std::string List::insert(int i,std::string data) {
   Node *tmp,*t;
-  tmp = head;
-  t = new Node(data);
-  if (index < size()) {
-    for (int i = 0; i < index; i++) {
-      tmp = tmp->getNext();
-    }
+  t = head;
+  tmp = t->getNext();
+  int ctr = 0;
+  while (ctr < i - 1) {
+    t = tmp;
+    tmp = t->getNext();
+    ctr++;
   }
-  return data;
+  t->setNext(new Node(data, tmp));
+  return tmp->getData();
 }
 
 void List::remove(int i) {
-  return;
+  Node *tmp,*t;
+  t = head;
+  tmp = t->getNext();
+  int ctr = 0;
+  while (ctr < i - 1) {
+    t = tmp;
+    tmp = t->getNext();
+    ctr++;
+  }
+  t->setNext(tmp->getNext());
+  delete tmp;
 }
 
-//std::string & List::operator[](int) {
-//
-//}
+std::string & List::operator[](int i) {
+  return at(i);
+}

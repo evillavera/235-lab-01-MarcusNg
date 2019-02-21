@@ -3,26 +3,35 @@
 
 int main()
 {
-  List *l = new List();
-  std::cout << l->getDebugString();
-  l->insert("one");
-  l->insert("two");
-  l->insert("three");
-  l->insert("four");
-  std::cout << l->getDebugString();
-  std::cout << l->size();
+  List l;
+  std::cout << l.getDebugString();
+  l.insert("one");
+  l.insert("two");
+  l.insert("three");
+  l.insert("four");
 
-  std::cout << std::endl << "push_back" << std::endl;
-  l->insert("five");
-  l->push_back("six");
-  std::cout << l->getDebugString() << std::endl;
+  std::cout << "\n\n-----------Testing-----------\n\n";
+  std::cout << l.getDebugString();
+  std::cout << "size: " << l.size();
 
-  delete l;
-  List l2;
-  l2.insert("a");
-  l2.insert("b");
-  l2.insert("c");
-  l2.insert("d");
-  std::cout << l2.getDebugString();
+  std::cout << "\n\npush_back(\"five\")"")\n";
+  l.push_back("five");
+  std::cout << l.getDebugString() << std::endl;
+
+  std::cout << "operator [3]\n";
+  std::cout << "l[3]: " << l[3] << std::endl;
+  std::cout << "\nsetting l[3] to hello\n";
+  l[3] = "hello";
+  std::cout << "l.at(3): " << l.at(3) << std::endl;
+
+  std::cout << "\ninserting \"awesome\" at index 4" << std::endl;
+  l.insert(4, "awesome");
+
+  std::cout << l.getDebugString() << std::endl;
+
+  std::cout << "removing \"two\" at index 2" << std::endl;
+  l.remove(2);
+  std::cout << l.getDebugString() << std::endl;
+
   return 0;
 }

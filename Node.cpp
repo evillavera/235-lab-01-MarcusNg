@@ -26,6 +26,10 @@ std::string Node::getData(){
   return data;
 }
 
+std::string &Node::getRefData(){
+  return data;
+}
+
 Node* Node::getNext(){
   return next;
 }
