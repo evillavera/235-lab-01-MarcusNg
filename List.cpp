@@ -4,16 +4,16 @@
 #include "List.h"
 
 List::List(){
-  head = nullptr;
+  dummy = new Node("dummy", nullptr);
+  head = dummy;
   size = 0;
 }
 
 List::~List(){
   std::cout << "In the destructor\n";
-  if (head != nullptr){
+  if (dummy != nullptr){
     Node *t,*t2;
-    
-    t=head->getNext();
+    t=dummy->getNext();
     while (t!=nullptr){
       t2=t;
       t=t->getNext();
@@ -25,18 +25,14 @@ List::~List(){
 
 void List::insert(std::string data){
   Node *t = new Node(data,nullptr);
-  if (head==nullptr)
-    head=t;
-  else{
-    t->setNext(head);
-    head = t;
-  }
+  t->setNext(dummy->getNext());
+  dummy->setNext(t);
   size++;
 }
 
 std::string List::getDebugString(){
   std::string s = "";
-  Node *t = head;
+  Node *t = dummy->getNext();
   while (t != nullptr){
     s = s + t->getData()+"->";
     t=t->getNext();
@@ -47,16 +43,12 @@ std::string List::getDebugString(){
 
 void List::push_back(std::string data) {
   Node *tmp,*t;
-  tmp = head;
+  tmp = dummy->getNext();
   t = new Node(data);
-  if (head != nullptr){
-    while (tmp->getNext() != nullptr) {
-      tmp = tmp->getNext();
-    }
-    tmp->setNext(t);
-  } else {
-    head = t;
+  while (tmp->getNext() != nullptr) {
+    tmp = tmp->getNext();
   }
+  tmp->setNext(t);
   size++;
 }
 
@@ -78,7 +70,7 @@ int List::size() {
 */
 
 std::string & List::at(int i) {
-  Node *tmp = head;
+  Node *tmp = dummy->getNext();
   int ctr = 0;
   while (ctr < i) {
     tmp = tmp->getNext();
@@ -89,7 +81,7 @@ std::string & List::at(int i) {
 
 std::string List::insert(int i,std::string data) {
   Node *tmp,*t;
-  t = head;
+  t = dummy->getNext();
   tmp = t->getNext();
   int ctr = 0;
   while (ctr < i - 1) {
@@ -104,7 +96,7 @@ std::string List::insert(int i,std::string data) {
 
 void List::remove(int i) {
   Node *tmp,*t;
-  t = head;
+  t = dummy->getNext();
   tmp = t->getNext();
   int ctr = 0;
   while (ctr < i - 1) {
